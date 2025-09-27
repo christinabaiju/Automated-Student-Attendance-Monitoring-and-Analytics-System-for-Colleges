@@ -70,6 +70,7 @@ $conn->close();
       <label for="rollno">Roll Number:</label>
       <input type="text" id="rollno" name="rollno" />
     </div>
+   <br>
 
     <button type="submit">Submit</button>
   <?php if ($message) { echo "<br><p>$message</p>"; } ?>
