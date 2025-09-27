@@ -29,6 +29,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   } else {
     $stmt = $conn->prepare("INSERT INTO users (role, username, password) VALUES (?, ?, ?)");
     $stmt->bind_param("sss", $role, $username, $hashed_password);
+    header("Location: attendance_admin_dashboard.php");
+        exit();
   }
 
   if ($stmt->execute()) {
@@ -101,5 +103,3 @@ $conn->close();
   </script>
 </body>
 </html>
-
-
