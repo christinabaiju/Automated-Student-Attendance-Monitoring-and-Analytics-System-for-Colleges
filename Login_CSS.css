@@ -1,0 +1,171 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: url('https://cache.careers360.mobi/media/article_images/2022/3/2/ip_university_official_twitter_1.jpg') no-repeat center center fixed;
+  background-size: cover;
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Dark overlay to improve contrast over image */
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5); /* adjust darkness here */
+  z-index: 0;
+}
+
+/* Form styles */
+form {
+  background: rgba(0, 0, 0, 0.35);
+  padding: 30px 40px;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  width: 360px;
+  backdrop-filter: blur(12px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1;
+  position: relative;
+}
+
+h2 {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 25px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  color: #eef6ff;
+}
+
+.role-selection {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  gap: 20px;
+  margin-bottom: 18px;
+  font-weight: 600;
+  color: #d9ecff;
+}
+
+.role-selection label {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+input[type="radio"] {
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+.form-row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.form-row label {
+  flex-shrink: 0;
+  color: #dcefff;
+}
+
+.form-row .username-label {
+  margin-left: auto; /* pushes it to the right */
+  margin-right: 12px; /* space before input */
+}
+
+input[type="text"],
+input[type="password"] {
+  flex-grow: 1;
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+  font-size: 15px;
+  color: #13547a;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+  box-shadow: 0 0 6px rgba(9, 132, 227, 0.75);
+  background: #eaf6ff;
+}
+
+#rollNoSection {
+  width: 100%;
+  margin-bottom: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* centers both label and input */
+}
+
+#rollNoSection label {
+  margin-bottom: 6px;
+  color: #dcefff;
+  font-weight: 600;
+}
+
+#rollNoSection input {
+  width: 90%;
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+  font-size: 15px;
+  color: #13547a;
+}
+
+button {
+  width: 100%;
+  padding: 12px 0;
+  font-size: 16px;
+  border-radius: 8px;
+  border: none;
+  background: linear-gradient(90deg, #0d47a1, #1976d2);
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  letter-spacing: 1px;
+}
+
+button:hover {
+  background: linear-gradient(90deg, #1976d2, #0d47a1);
+}
+
+/* Responsive */
+@media (max-width: 400px) {
+  form {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .form-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .form-row label,
+  .form-row .username-label {
+    margin: 0 0 8px 0;
+  }
+
+  input[type="text"],
+  input[type="password"] {
+    flex-grow: unset;
+    width: 100%;
+  }
+}
