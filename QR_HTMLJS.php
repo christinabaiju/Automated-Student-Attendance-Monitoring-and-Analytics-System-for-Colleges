@@ -30,13 +30,12 @@
       cursor: pointer;
     }
     #qr-reader {
-      width: 320px;
-      max-width: 80vw;
+      width: 400px;
+      max-width: 100vw;
       margin: auto;
       border-radius: 8px;
       box-shadow: 0 0 15px rgba(0,0,0,0.5);
       background: #ffffff30;
-      padding: 10px;
     }
     #qr-result {
       margin-top: 1rem;
@@ -49,7 +48,7 @@
   <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
 </head>
 <body>
-  <h1>Attendance QR Scanner</h1>
+  <h1>MARK YOUR ATTENDANCE</h1>
   <div class="role-selector">
     <label><input type="radio" name="role" value="student" checked /> Student</label>
     <label><input type="radio" name="role" value="faculty" /> Faculty (Admin Access)</label>
@@ -65,7 +64,7 @@
     const facultyRole = document.querySelector('input[name="role"][value="faculty"]');
 
     // Options for scanner box size
-    const config = { fps: 10, qrbox: { width: 250, height: 250 } };
+    const config = { fps: 10, qrbox: { width: 300, height: 250 } };
 
   function onScanSuccess(decodedText, decodedResult) {
   try {
