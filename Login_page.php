@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   }
 
   if ($stmt->execute()) {
-    $message = "Registration successful!";
+    $message = "Marked Attendance!";
   } else {
     $message = "Error: " . $stmt->error;
   }
@@ -47,18 +47,19 @@ $conn->close();
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Login/Register</title>
+  <title>ATTENDANCE</title>
   <link rel="stylesheet" href="Login_CSS.css">
 </head>
 <body>
   <form id="loginForm" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
- <h2>Login/Register</h2>
+ <h2>ATTENDANCE</h2>
     <label>
       <input type="radio" name="role" value="student" checked /> Student
     </label>
     <label>
       <input type="radio" name="role" value="admin" /> Admin
     </label>
+<br>
 
     <label for="username">Username:</label>
     <input type="text" id="username" name="username" required />
