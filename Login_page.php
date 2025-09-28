@@ -9,37 +9,50 @@ $conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
 
 // Check connection
 if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
+    die("Connection failed: " . $conn->connect_error);
 }
 
 $message = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  // Sanitize inputs
-  $role = $_POST['role'];
-  $username = $conn->real_escape_string($_POST['username']);
-  $password = $_POST['password']; // In production, always hash passwords
-  $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+    // Sanitize inputs
+    $role = $_POST['role'];
+    $username = $conn->real_escape_string($_POST['username']);
+    $password = $_POST['password'];
+    $rollno = $role === 'student' ? $conn->real_escape_string($_POST['rollno']) : NULL;
 
-  $rollno = $role === 'student' ? $conn->real_escape_string($_POST['rollno']) : NULL;
+    if ($role === "student") {
+        // Hash password only for students
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+        $stmt = $conn->prepare("INSERT INTO users (role, username, password, rollno) VALUES (?, ?, ?, ?)");
+        $stmt->bind_param("ssss", $role, $username, $hashed_password, $rollno);
+        if ($stmt->execute()) {
+            $message = "Marked Attendance!";
+        } else {
+            $message = "Error: " . $stmt->error;
+        }
+        $stmt->close();
+    } else if ($role === "admin") {
+        // For admins, do not hash; just check plain text password as before
+        $stmt = $conn->prepare("SELECT password FROM users WHERE role='admin' AND username=?");
+        $stmt->bind_param("s", $username);
+        $stmt->execute();
+        $stmt->store_result();
 
-  if ($role === "student") {
-    $stmt = $conn->prepare("INSERT INTO users (role, username, password, rollno) VALUES (?, ?, ?, ?)");
-    $stmt->bind_param("ssss", $role, $username, $hashed_password, $rollno);
-  } else {
-    $stmt = $conn->prepare("INSERT INTO users (role, username, password) VALUES (?, ?, ?)");
-    $stmt->bind_param("sss", $role, $username, $hashed_password);
-    header("Location: attendance_admin_dashboard.php");
-        exit();
-  }
-
-  if ($stmt->execute()) {
-    $message = "Marked Attendance!";
-  } else {
-    $message = "Error: " . $stmt->error;
-  }
-
-  $stmt->close();
+        if ($stmt->num_rows > 0) {
+            $stmt->bind_result($password_from_db);
+            $stmt->fetch();
+            if ($password === $password_from_db) {
+                header("Location: attendance_admin_dashboard.php");
+                exit();
+            } else {
+                $message = "Invalid password for admin user.";
+            }
+        } else {
+            $message = "Admin user not found.";
+        }
+        $stmt->close();
+    }
 }
 
 $conn->close();
