@@ -51,10 +51,11 @@
   <h1>MARK YOUR ATTENDANCE</h1>
   <div class="role-selector">
     <label><input type="radio" name="role" value="student" checked /> Student</label>
-    <label><input type="radio" name="role" value="faculty" /> Faculty (Admin Access)</label>
-  </div>
+  </div> <br>
+  <B> PLACE THE QR CODE IN FRONT OF THE CAMERA! </B>
+  <br>
   <div id="qr-reader"></div>
-  <div id="qr-result">Scan a QR code to mark attendance or get admin access.</div>
+  <div id="qr-result"><b>Scan a QR code to mark attendance !</b></div>
 
   <script>
     const resultContainer = document.getElementById('qr-result');
