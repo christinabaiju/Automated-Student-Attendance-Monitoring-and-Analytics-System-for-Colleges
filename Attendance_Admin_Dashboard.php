@@ -134,6 +134,60 @@ h1 {
   background-color: #3a2303;
 }
 
+/* Profile dropdown fixed to top right corner */
+.profile-dropdown {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  z-index: 9999;
+}
+
+/* Circular profile icon styling */
+.profile-circle {
+  width: 40px;
+  height: 40px;
+  background-color: #4b2e05;
+  color: #f5f5dc;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 40px;
+  font-weight: 700;
+  font-size: 1.2rem;
+  cursor: pointer;
+  user-select: none;
+  box-shadow: 0 0 6px #00000080;
+}
+
+/* Dropdown menu hidden initially */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: #f9f9dc;
+  min-width: 140px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  border-radius: 8px;
+  margin-top: 0.4rem;
+  overflow: hidden;
+}
+
+/* Dropdown links styling */
+.dropdown-content a {
+  display: block;
+  padding: 10px 15px;
+  color: #4b2e05;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: background-color 0.25s ease;
+}
+
+.dropdown-content a:hover {
+  background-color: #4b2e05;
+  color: #f5f5dc;
+}
+
 </style>
 </head>
 <body>
@@ -147,6 +201,10 @@ h1 {
     <div><span id="presentCount"><?php echo $presentCount; ?></span> Present</div>
     <div><span id="absentCount"><?php echo $absentCount; ?></span> Absent</div>
   </div>
+
+<div class="profile-dropdown">
+  <div class="profile-circle" onclick="toggleProfileMenu()">U</div>
+</div>
 
   <button id="downloadCSV">Download Attendance</button>
 </div>
