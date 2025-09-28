@@ -1,0 +1,21 @@
+// To create the database
+CREATE DATABASE attendence_system
+
+// To create the table users
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    role ENUM('student', 'admin') NOT NULL,
+    username VARCHAR(50) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    rollno VARCHAR(20) DEFAULT NULL
+) 
+
+// To create the table attendance
+CREATE TABLE attendance (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    Date DATE NOT NULL,
+    Status VARCHAR(50) NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+) 
+
